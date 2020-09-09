@@ -13,13 +13,18 @@
         <!--Lista de Jogos-->
         <scene sceneID="0AZ-0T-HtD">
             <objects>
-                <tableViewController id="nCc-cH-CHb" sceneMemberID="viewController">
+                <tableViewController id="nCc-cH-CHb" customClass="GamesTableViewController" customModule="MyGames" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AC5-PG-BC6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="64f-ZU-xod">
+                            <rect key="frame" x="0.0" y="118" width="375" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="ae1-BB-AXT">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="ae1-BB-AXT" customClass="GameTableViewCell" customModule="MyGames" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ae1-BB-AXT" id="uCF-6H-3TH">
@@ -58,6 +63,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="cover" destination="YDC-WG-vAp" id="3S6-Yl-4ez"/>
+                                    <outlet property="name" destination="0fr-Md-wOI" id="5c1-Pi-AHc"/>
+                                    <outlet property="platform" destination="2gT-mA-LmG" id="m21-Tn-21x"/>
                                     <segue destination="0Yk-6z-hi2" kind="show" id="RxP-ir-hd9"/>
                                 </connections>
                             </tableViewCell>
@@ -67,16 +75,22 @@
                             <outlet property="delegate" destination="nCc-cH-CHb" id="guV-BF-mHw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lista de Jogos" id="lc6-9T-SVV"/>
+                    <navigationItem key="navigationItem" title="Lista de Jogos" largeTitleDisplayMode="always" id="lc6-9T-SVV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ubj-Sl-YK9">
+                            <connections>
+                                <segue destination="TRF-gJ-Efx" kind="show" id="5ob-1q-bJg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o9u-P9-nay" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1068" y="-250.52473763118442"/>
         </scene>
-        <!--View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="ogs-0V-lCN">
             <objects>
-                <viewController id="0Yk-6z-hi2" sceneMemberID="viewController">
+                <viewController id="0Yk-6z-hi2" customClass="GameViewController" customModule="MyGames" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZFb-yy-y3f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -104,6 +118,7 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Z2O-aV-Jhp" firstAttribute="trailing" secondItem="X4F-oZ-JkI" secondAttribute="trailing" constant="16" id="0je-a8-ayg"/>
                             <constraint firstItem="Z2O-aV-Jhp" firstAttribute="bottom" secondItem="X4F-oZ-JkI" secondAttribute="bottom" constant="16" id="ACc-3R-1Gw"/>
@@ -128,6 +143,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cover" destination="X4F-oZ-JkI" id="IKd-VC-XMu"/>
+                        <outlet property="name" destination="fMU-m1-pxf" id="iO1-ag-iiW"/>
+                        <outlet property="platform" destination="a67-bV-28S" id="94a-4Q-8wA"/>
+                        <outlet property="releaseDate" destination="YOI-rt-f6q" id="5O5-Rs-g90"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="loH-tD-2Ub" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,7 +157,7 @@
         <!--Informações do Jogo-->
         <scene sceneID="Njw-V4-yY3">
             <objects>
-                <viewController id="TRF-gJ-Efx" sceneMemberID="viewController">
+                <viewController id="TRF-gJ-Efx" customClass="GameAddEditViewController" customModule="MyGames" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="02d-pe-7bB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,10 +208,16 @@
                                 <state key="normal" title="Salvar">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="save:" destination="TRF-gJ-Efx" eventType="touchUpInside" id="87i-6O-ydB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOr-lz-s65">
                                 <rect key="frame" x="16" y="350" width="343" height="192"/>
                                 <state key="normal" title="Toque para adicionar a imagem"/>
+                                <connections>
+                                    <action selector="addNewCover:" destination="TRF-gJ-Efx" eventType="touchUpInside" id="NXO-nf-dbV"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3N-xH-jxP">
                                 <rect key="frame" x="16" y="329" width="343" height="17"/>
@@ -231,10 +258,16 @@
                         <viewLayoutGuide key="safeArea" id="7X9-Ut-PbJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Informações do Jogo" largeTitleDisplayMode="never" id="MI5-VP-65N"/>
+                    <connections>
+                        <outlet property="cover" destination="1aY-NK-9cH" id="Wy4-9W-Hw4"/>
+                        <outlet property="name" destination="4hR-yn-Af5" id="avj-9s-Hyt"/>
+                        <outlet property="platform" destination="mrJ-Fc-D6T" id="3I6-A1-oQ2"/>
+                        <outlet property="releaseDate" destination="rZQ-c7-DRV" id="I09-6S-iAR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VTO-d9-BOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-727.20000000000005" y="517.6911544227886"/>
+            <point key="canvasLocation" x="-780" y="519"/>
         </scene>
         <!--Jogos-->
         <scene sceneID="v1y-8e-wNl">
@@ -244,7 +277,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="aqv-TS-aaV">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="primary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="nCc-cH-CHb" kind="relationship" relationship="rootViewController" id="jKc-h9-QXf"/>
@@ -260,6 +300,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="f1m-Gx-aCn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w3h-4t-0xl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -276,11 +317,16 @@
         <!--Lista de Plataformas-->
         <scene sceneID="KFh-e0-Qmj">
             <objects>
-                <tableViewController id="ldf-ED-xZw" sceneMemberID="viewController">
+                <tableViewController id="ldf-ED-xZw" customClass="PlatformTableViewController" customModule="MyGames" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iY6-Ws-d9q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="qQk-KO-Bta">
+                            <rect key="frame" x="0.0" y="72" width="375" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="aXF-sK-gQ4" style="IBUITableViewCellStyleDefault" id="CH9-Pb-b32">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -305,7 +351,13 @@
                             <outlet property="delegate" destination="ldf-ED-xZw" id="pDd-vl-vM2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lista de Plataformas" id="4Eh-5T-eDa"/>
+                    <navigationItem key="navigationItem" title="Lista de Plataformas" largeTitleDisplayMode="always" id="4Eh-5T-eDa">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UVY-Vu-xV3">
+                            <connections>
+                                <action selector="addPlatform:" destination="ldf-ED-xZw" id="pTh-vl-pL8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ray-KJ-qGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -319,7 +371,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="6ig-ND-UTJ">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" name="secondary"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="ldf-ED-xZw" kind="relationship" relationship="rootViewController" id="pG3-g6-ReN"/>
@@ -340,4 +399,7 @@
             <color red="1" green="0.23529411764705882" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lPC-jq-Zok"/>
+    </inferredMetricsTieBreakers>
 </document>
