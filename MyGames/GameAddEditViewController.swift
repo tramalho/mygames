@@ -16,9 +16,22 @@ class GameAddEditViewController: UIViewController {
     @IBOutlet weak var cover: UIImageView!
     
     private var game: Game!
+    private var platformManager = PlatformManager.shared
+    private lazy var pickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+    
+        return pickerView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        platform.inputView = pickerView
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        platformManager.load(with: context)
     }
     
     @IBAction func addNewCover(_ sender: UIButton) {
@@ -40,5 +53,19 @@ class GameAddEditViewController: UIViewController {
         }
         
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension GameAddEditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return platformManager.platforms.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return platformManager.platforms[row].name
     }
 }

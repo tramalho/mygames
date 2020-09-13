@@ -14,6 +14,7 @@
 		373D742425052E180051FF7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 373D742325052E180051FF7D /* Assets.xcassets */; };
 		373D742725052E180051FF7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 373D742525052E180051FF7D /* LaunchScreen.storyboard */; };
 		379BC1D2250C45600022120F /* UIViewController+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BC1D1250C45600022120F /* UIViewController+CoreData.swift */; };
+		379BC1D4250E5F000022120F /* PlatformManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BC1D3250E5F000022120F /* PlatformManager.swift */; };
 		37AF846F250995CA0026B718 /* GamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF846E250995CA0026B718 /* GamesTableViewController.swift */; };
 		37AF8471250996060026B718 /* PlatformTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF8470250996060026B718 /* PlatformTableViewController.swift */; };
 		37AF8473250996700026B718 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AF8472250996700026B718 /* GameViewController.swift */; };
@@ -31,6 +32,7 @@
 		373D742625052E180051FF7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		373D742825052E180051FF7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		379BC1D1250C45600022120F /* UIViewController+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CoreData.swift"; sourceTree = "<group>"; };
+		379BC1D3250E5F000022120F /* PlatformManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformManager.swift; sourceTree = "<group>"; };
 		37AF846E250995CA0026B718 /* GamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesTableViewController.swift; sourceTree = "<group>"; };
 		37AF8470250996060026B718 /* PlatformTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformTableViewController.swift; sourceTree = "<group>"; };
 		37AF8472250996700026B718 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				373D742825052E180051FF7D /* Info.plist */,
 				373D742025052E0C0051FF7D /* MyGames.xcdatamodeld */,
 				379BC1D1250C45600022120F /* UIViewController+CoreData.swift */,
+				379BC1D3250E5F000022120F /* PlatformManager.swift */,
 			);
 			path = MyGames;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				373D741A25052E0C0051FF7D /* AppDelegate.swift in Sources */,
 				379BC1D2250C45600022120F /* UIViewController+CoreData.swift in Sources */,
 				37AF8473250996700026B718 /* GameViewController.swift in Sources */,
+				379BC1D4250E5F000022120F /* PlatformManager.swift in Sources */,
 				373D742225052E0C0051FF7D /* MyGames.xcdatamodeld in Sources */,
 				37AF8477250997650026B718 /* GameTableViewCell.swift in Sources */,
 			);

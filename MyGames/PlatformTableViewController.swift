@@ -10,41 +10,71 @@ import UIKit
 
 class PlatformTableViewController: UITableViewController {
 
+    private let platformManager = PlatformManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        load()
     }
-
+    
+    private func load() {
+        platformManager.load(with: context)
+        tableView.reloadData()
+    }
+    
     @IBAction func addPlatform(_ sender: UIBarButtonItem) {
-        
+        showAlert(platform: nil)
     }
+
+    func showAlert(platform:Platform?) {
+        
+        let title = platform == nil ? "Cadastrar Plataforma" : "Editar \(platform?.name ?? "")"
+        
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alert.view.tintColor = UIColor(named: "secondary")
+        
+        alert.addTextField { (textField) in
+            textField.placeholder = "Nome da Plataforma"
+            
+            if let name = platform?.name {
+                textField.text = name
+            }
+        }
+        
+        alert.addAction(UIAlertAction(title: "salvar", style: .default, handler: { (action) in
+            let editedPlatform = platform ?? Platform(context: self.context)
+            editedPlatform.name = alert.textFields?.first?.text
+            
+            do {
+                try self.context.save()
+                self.load()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "cancelar", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+
+    }
+    
     
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return platformManager.platforms.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let platform = platformManager.platforms[indexPath.row]
+        cell.textLabel?.text = platform.name
+        
         return cell
     }
-    */
+ 
 
     /*
     // Override to support conditional editing of the table view.
