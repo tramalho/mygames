@@ -264,6 +264,7 @@
                     <navigationItem key="navigationItem" title="Informações do Jogo" largeTitleDisplayMode="never" id="MI5-VP-65N"/>
                     <connections>
                         <outlet property="cover" destination="1aY-NK-9cH" id="Wy4-9W-Hw4"/>
+                        <outlet property="coverButton" destination="ZOr-lz-s65" id="GTi-DR-bmT"/>
                         <outlet property="name" destination="4hR-yn-Af5" id="avj-9s-Hyt"/>
                         <outlet property="platform" destination="mrJ-Fc-D6T" id="3I6-A1-oQ2"/>
                         <outlet property="releaseDate" destination="rZQ-c7-DRV" id="I09-6S-iAR"/>
