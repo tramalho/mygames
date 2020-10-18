@@ -16,7 +16,7 @@ class GameAddEditViewController: UIViewController {
     @IBOutlet weak var cover: UIImageView!
     @IBOutlet weak var coverButton: UIButton!
     
-    private var game: Game!
+    var game: Game!
     private var platformManager = PlatformManager.shared
     private lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
@@ -46,6 +46,25 @@ class GameAddEditViewController: UIViewController {
         platform.inputAccessoryView = toolbar
     }
     
+    private func setupData() {
+        if let game = game {
+            name.text = game.name
+            
+            if let platform = game.platform, let index = platformManager.platforms.firstIndex(of: platform) {
+                self.platform.text = platform.name
+                pickerView.selectRow(index, inComponent: 0, animated: false)
+            }
+            
+            if let releaseDate = game.releaseDate {
+               self.releaseDate.date = releaseDate
+            }
+            
+            if let image = game.cover as? UIImage {
+                cover.image = image
+            }
+        }
+    }
+    
     @objc private func cancel() {
         platform.resignFirstResponder()
     }
@@ -63,6 +82,7 @@ class GameAddEditViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         platformManager.load(with: context)
+        setupData()
     }
     
     @IBAction func addNewCover(_ sender: UIButton) {

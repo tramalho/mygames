@@ -70,7 +70,7 @@
                                     <outlet property="cover" destination="YDC-WG-vAp" id="3S6-Yl-4ez"/>
                                     <outlet property="name" destination="0fr-Md-wOI" id="5c1-Pi-AHc"/>
                                     <outlet property="platform" destination="2gT-mA-LmG" id="m21-Tn-21x"/>
-                                    <segue destination="0Yk-6z-hi2" kind="show" id="RxP-ir-hd9"/>
+                                    <segue destination="0Yk-6z-hi2" kind="show" identifier="gameSegue" id="RxP-ir-hd9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -82,7 +82,7 @@
                     <navigationItem key="navigationItem" title="Lista de Jogos" largeTitleDisplayMode="always" id="lc6-9T-SVV">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ubj-Sl-YK9">
                             <connections>
-                                <segue destination="TRF-gJ-Efx" kind="show" id="5ob-1q-bJg"/>
+                                <segue destination="TRF-gJ-Efx" kind="show" identifier="persistGameSegue" id="5ob-1q-bJg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,17 +107,23 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plataforma" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a67-bV-28S">
                                 <rect key="frame" x="16" y="114.5" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="q7d-rZ-eCe"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ano de Lançamento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOI-rt-f6q">
                                 <rect key="frame" x="16" y="143.5" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="acz-Yc-UqL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4F-oZ-JkI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X4F-oZ-JkI">
                                 <rect key="frame" x="16" y="180.5" width="343" height="421.5"/>
                             </imageView>
                         </subviews>
@@ -405,6 +411,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5ob-1q-bJg"/>
+        <segue reference="lPC-jq-Zok"/>
     </inferredMetricsTieBreakers>
 </document>

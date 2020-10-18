@@ -34,6 +34,14 @@ class GamesTableViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gameSegue" {
+            if let vc = segue.destination as? GameViewController, let games = fetchedResultController.fetchedObjects {
+                vc.game = games[tableView.indexPathForSelectedRow?.row ?? 0]
+            }
+        }
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,17 +84,13 @@ class GamesTableViewController: UITableViewController {
      }
      */
     
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+         if editingStyle == .delete {
+            guard let game = fetchedResultController.fetchedObjects?[indexPath.row] else { return }
+            context.delete(game)
+         }
      }
-     }
-     */
+ 
     
     /*
      // Override to support rearranging the table view.
@@ -120,6 +124,9 @@ extension GamesTableViewController: NSFetchedResultsControllerDelegate {
         
         switch type {
         case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
             break
         default:
             tableView.reloadData()
