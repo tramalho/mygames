@@ -15,10 +15,25 @@ class GamesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.tintColor = .white
+        searchController.searchBar.barTintColor = .white
+        searchController.searchBar.delegate = self
+        
+        navigationItem.searchController = searchController
+        
         loadGames()
     }
     
-    func loadGames() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    func loadGames(filtering: String = "") {
         let fetchRequest: NSFetchRequest<Game> = Game.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -26,6 +41,11 @@ class GamesTableViewController: UITableViewController {
         fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
         fetchedResultController.delegate = self
+        
+        if !filtering.isEmpty {
+            let predicate = NSPredicate(format: "name contains [c] %@", filtering)
+            fetchRequest.predicate = predicate
+        }
         
         do {
             try fetchedResultController.performFetch()
@@ -88,6 +108,11 @@ class GamesTableViewController: UITableViewController {
          if editingStyle == .delete {
             guard let game = fetchedResultController.fetchedObjects?[indexPath.row] else { return }
             context.delete(game)
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
          }
      }
  
@@ -133,3 +158,23 @@ extension GamesTableViewController: NSFetchedResultsControllerDelegate {
         }
     }
 }
+
+extension GamesTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        loadGames()
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let filter = searchBar.text {
+            loadGames(filtering: filter)
+            tableView.reloadData()
+        }
+    }
+}
+

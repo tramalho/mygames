@@ -27,12 +27,12 @@ class PlatformManager {
         }
     }
     
-    func delete(with context: NSManagedObjectContext, index:Int) {
-        let console = platforms[index]
+    func delete(with context: NSManagedObjectContext, idx:Int) {
+        let console = platforms[idx]
         context.delete(console)
         do {
             try context.save()
-            
+            platforms.remove(at: idx)
         } catch  {
             print(error.localizedDescription)
         }
